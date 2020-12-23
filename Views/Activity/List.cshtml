@@ -125,7 +125,7 @@
                 <p class="td1">
                     狀態 &nbsp;:
                     @{if
-                                          (item.Status == "人員已滿")
+                                                (item.Status == "人員已滿")
                         {
                             <span style="color:red"> @Html.DisplayFor(modelItem => item.Status) </span>
                         }
@@ -177,7 +177,7 @@
                     }
                     &Iota;
                     @{
-                        if (item.entity.ActivitySubCategory.ActivitySubCategoryName == "團購類"&&item.entity.MemberID==memberid)
+                        if (item.entity.ActivitySubCategory.ActivitySubCategoryName == "團購類" && item.entity.MemberID == memberid)
                         {
 
                             <a href="@Url.Action("Create", "ProductBack", new { id = item.ActivityID })">編輯商品</a>
@@ -188,7 +188,34 @@
                         }
                     }
 
+                    <label class="col-md-8" style="padding-left:0;">
+                        @if (item.entity.MemberID != memberid)
+                        {
+                        <button type="button" class="btn btn-info AdminReply" style="height:unset" onclick="openModal(@item.ActivityID )">留言</button>
+                        }
+                        else
+                        {
+                        @("");
+                        }
 
+                       @if (item.entity.MemberID == memberid)
+                        {
+
+                        Message m = db.Message.FirstOrDefault(p => p.AdditionField3 == item.ActivityID);
+                        if (m != null)
+                        {
+                        <button onclick="showMessage(@item.ActivityID);" class="btn btn-info AdminReply" style="height:unset;">查看留言</button>
+                        }
+                        else
+                        {
+                        @("");
+                        }
+                        }
+                        else
+                        {
+                        @("");
+                        }
+                    </label>
                 </p>
 
             </div>

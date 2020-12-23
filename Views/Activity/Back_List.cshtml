@@ -133,7 +133,7 @@
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
                     <td style="width:140px">
-                        <button class="btn btn-default" onclick="showTable(this,'@item.Note', @item.ActivityID)" style="height:unset;background-color:#f6755e; border-color:#f6755e; color:#ffffff; padding:0; width:40px; text-align:center; line-height:2.5em;" flag="true">訊息</button> |
+                        <button class="btn btn-default" onclick="showTable(this,'@item.Note', @item.ActivityID)" style="height:unset;background-color:#f6755e; border-color:#f6755e; color:#ffffff; padding:0; width:40px; text-align:center; line-height:2.5em;" flag="true">備註</button> |
                         @Html.ActionLink("修改", "Edit", new { id = item.ActivityID }, new { @class = "btn btn-primary myedit" })
 
 
@@ -172,7 +172,7 @@
             $(obj).parent().parent().next().remove(); //刪除下面第一個 tr
             $(obj).parent().parent().next().remove(); //刪除下面第二個 tr
 
-            $(obj).text("訊息");
+            $(obj).text("備註");
             $(obj).attr('flag', 'true');  //改成 false
 
             //$(obj).parent().parent().css('font-weight', 'bold')
