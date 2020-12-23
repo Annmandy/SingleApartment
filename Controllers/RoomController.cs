@@ -230,7 +230,10 @@ namespace sln_SingelApartment.Controllers
         public ActionResult DeleteRoomFavorite(int id)
         {
             var user = Session[CDictionary.welcome] as CMember;
+            if (user == null) { return RedirectToAction("Login", "Member"); }
+            
             int memberID = user.fMemberId;
+            
             RoomFavorite roomfa = dbSA.RoomFavorite.FirstOrDefault(r => r.RoomID == id);
             if (roomfa != null)
             {
@@ -330,6 +333,8 @@ namespace sln_SingelApartment.Controllers
         // RoomBooking
         public ActionResult BookingInfo(int id)
         {
+            var user = Session[CDictionary.welcome] as CMember;
+            if (user == null) { return RedirectToAction("Login", "Member"); }
 
             CMember member = Session[CDictionary.welcome] as CMember;
 
@@ -372,6 +377,8 @@ namespace sln_SingelApartment.Controllers
         public ActionResult DeleteMyLease(int id)
         {
             var user = Session[CDictionary.welcome] as CMember;
+            if (user == null) { return RedirectToAction("Login", "Member"); }
+
             var memberId = user.fMemberId;
 
             Lease l = dbSA.Lease.FirstOrDefault(t => t.ID == id);
@@ -385,7 +392,7 @@ namespace sln_SingelApartment.Controllers
 
                 //退租成功通知訊息
                 CInformationFactory x = new CInformationFactory();
-                x.Add(memberId, 400, id, 40040);
+                x.Add(memberId, 400, id, 40030);
 
                 var rf = from r in dbSA.RoomFavorite
                          where r.RoomID.ToString() == roomID
@@ -398,7 +405,7 @@ namespace sln_SingelApartment.Controllers
                         int reID = item.Value;
                         //通知空房訊息
                         CInformationFactory y = new CInformationFactory();
-                        y.Add(reID, 400, 0 , 40030);
+                        y.Add(reID, 400, 0 , 40040);
 
                     }
                 }
@@ -415,7 +422,11 @@ namespace sln_SingelApartment.Controllers
         {
             CAboutRoomViewModel abtRoom_VM = new CAboutRoomViewModel();
 
+            var user = Session[CDictionary.welcome] as CMember;
+            if (user == null) { return RedirectToAction("Login", "Member"); }
+
             CMember member = Session[CDictionary.welcome] as CMember;
+            
             int memberID = member.fMemberId;
 
             var result = from L in dbSA.Lease
@@ -592,8 +603,8 @@ namespace sln_SingelApartment.Controllers
                         oPayment.HashIV = "v77hoKGq4kWxNNIS";
                         oPayment.MerchantID = "2000132";
                         /* 基本參數 */
-                        oPayment.Send.ReturnURL = "http://localhost:44332/Member/Home";
-                        oPayment.Send.ClientBackURL = "http://localhost:44332/Product/OrderList";
+                        oPayment.Send.ReturnURL = "http://localhost:1080/Member/Home";
+                        oPayment.Send.ClientBackURL = "http://localhost:1080/Product/OrderList";
                         //oPayment.Send.OrderResultURL = "<<您要收到付款完成通知的瀏覽器端網址>>";
                         oPayment.Send.MerchantTradeNo = string.Format("{0:00000}", (new Random()).Next(100000));
                         oPayment.Send.MerchantTradeDate = DateTime.Now;
@@ -666,11 +677,11 @@ namespace sln_SingelApartment.Controllers
                         oPayment.MerchantID = "2000132";//ECPay提供的特店編號
 
                         /* 基本參數 */
-                        oPayment.Send.ReturnURL = "http://localhost:44332/Product/MakeOrderIntoDB";
-                        oPayment.Send.ClientBackURL = "http://localhost:44332/Product/OrderList";
+                        oPayment.Send.ReturnURL = "http://localhost:1080/Product/MakeOrderIntoDB";
+                        oPayment.Send.ClientBackURL = "http://localhost:1080/Product/OrderList";
                         //oPayment.Send.ReturnURL = "http://example.com";//付款完成通知回傳的網址
                         //oPayment.Send.ClientBackURL = "http://www.ecpay.com.tw/";//瀏覽器端返回的廠商網址
-                        oPayment.Send.OrderResultURL = "http://localhost:44332/Product/MakeOrderIntoDB";//瀏覽器端回傳付款結果網址
+                        oPayment.Send.OrderResultURL = "http://localhost:1080/Product/MakeOrderIntoDB";//瀏覽器端回傳付款結果網址
                         oPayment.Send.MerchantTradeNo = "WoJuApartment" + leaseid.ToString();//廠商的交易編號
                         oPayment.Send.MerchantTradeDate = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"); ;//廠商的交易時間
                         oPayment.Send.TotalAmount = (decimal)TotalPrice;//交易總金額
