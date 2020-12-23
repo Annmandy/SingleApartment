@@ -478,8 +478,8 @@ namespace sln_SingleApartment.Controllers
                         oPayment.HashIV = "v77hoKGq4kWxNNIS";
                         oPayment.MerchantID = "2000132";
                         /* 基本參數 */
-                        oPayment.Send.ReturnURL = "http://localhost:44332/Member/Home";
-                        oPayment.Send.ClientBackURL = "http://localhost:44332/Product/OrderList";
+                        oPayment.Send.ReturnURL = "http://localhost:1080/Member/Home";
+                        oPayment.Send.ClientBackURL = "http://localhost:1080/Product/OrderList";
                         //oPayment.Send.OrderResultURL = "<<您要收到付款完成通知的瀏覽器端網址>>";
                         oPayment.Send.MerchantTradeNo = string.Format("{0:00000}", (new Random()).Next(100000));
                         oPayment.Send.MerchantTradeDate = DateTime.Now;
@@ -552,12 +552,12 @@ namespace sln_SingleApartment.Controllers
                         oPayment.MerchantID = "2000132";//ECPay提供的特店編號
                         
                         /* 基本參數 */
-                        oPayment.Send.ReturnURL = "http://localhost:44332/Product/MakeOrderIntoDB";
-                        oPayment.Send.ClientBackURL = "http://localhost:44332/Product/OrderList";
+                        oPayment.Send.ReturnURL = "http://localhost:1080/Product/MakeOrderIntoDB";
+                        oPayment.Send.ClientBackURL = "http://localhost:1080/Product/OrderList";
                         //oPayment.Send.ReturnURL = "http://example.com";//付款完成通知回傳的網址
                         //oPayment.Send.ClientBackURL = "http://www.ecpay.com.tw/";//瀏覽器端返回的廠商網址
-                        oPayment.Send.OrderResultURL = "http://localhost:44332/Product/MakeOrderIntoDB";//瀏覽器端回傳付款結果網址
-                        oPayment.Send.MerchantTradeNo = "WoJuApartment" + orderID.ToString();//廠商的交易編號
+                        oPayment.Send.OrderResultURL = "http://localhost:1080/Product/MakeOrderIntoDB";//瀏覽器端回傳付款結果網址
+                        oPayment.Send.MerchantTradeNo = "WoJuApartment00" + orderID.ToString();//廠商的交易編號
                         oPayment.Send.MerchantTradeDate = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"); ;//廠商的交易時間
                         oPayment.Send.TotalAmount = (decimal)TotalPrice;//交易總金額
                         oPayment.Send.TradeDesc = "感謝您的購買^^";//交易描述
