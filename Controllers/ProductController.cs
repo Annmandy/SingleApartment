@@ -144,10 +144,10 @@ namespace sln_SingleApartment.Controllers
         {
             var client = new HttpClient();
             // Request headers - replace this example key with your valid Prediction-Key.
-            client.DefaultRequestHeaders.Add("Prediction-Key", "55f6001a7163417b95ab02f37900cf76");
+            client.DefaultRequestHeaders.Add("Prediction-Key", "9aa9c1b36c5542d4aaf4d6d53bacdb99");
 
             // Prediction URL - replace this example URL with your valid Prediction URL.
-            string url = "https://sgapart-customvision.cognitiveservices.azure.com/customvision/v3.0/Prediction/fafe23de-ddc4-483c-acdc-ec5567cb35aa/classify/iterations/ProductModel/image";
+            string url = "https://eastus2.api.cognitive.microsoft.com/customvision/v3.0/Prediction/e1af0518-ac4a-4d4e-b8b7-76cb6e13dcd4/classify/iterations/SingleApartment/image";
 
             HttpResponseMessage response = new HttpResponseMessage();
 
@@ -557,7 +557,7 @@ namespace sln_SingleApartment.Controllers
                         //oPayment.Send.ReturnURL = "http://example.com";//付款完成通知回傳的網址
                         //oPayment.Send.ClientBackURL = "http://www.ecpay.com.tw/";//瀏覽器端返回的廠商網址
                         oPayment.Send.OrderResultURL = "http://localhost:1080/Product/MakeOrderIntoDB";//瀏覽器端回傳付款結果網址
-                        oPayment.Send.MerchantTradeNo = "WoJuApartment00" + orderID.ToString();//廠商的交易編號
+                        oPayment.Send.MerchantTradeNo = "WoJuApartment000" + orderID.ToString();//廠商的交易編號
                         oPayment.Send.MerchantTradeDate = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"); ;//廠商的交易時間
                         oPayment.Send.TotalAmount = (decimal)TotalPrice;//交易總金額
                         oPayment.Send.TradeDesc = "感謝您的購買^^";//交易描述
