@@ -61,7 +61,7 @@
                 <div class="form-group">
                     <label>活動人數&nbsp;:</label>
                     <div>
-                        <input type="text" name="people" id="PeopleCount" autocomplete="off" required style="font-size:18px;font-weight:500;color:#9f9e9e;" />
+                        <input type="text" name="PeopleCount" id="PeopleCount" autocomplete="off" required style="font-size:18px;font-weight:500;color:#9f9e9e;" />
 
                         @Html.ValidationMessageFor(model => model.PeopleCount, "", new { @class = "text-danger" })
                     </div>
@@ -170,7 +170,7 @@
     {
         $("#subName").val("團購類");
         $("#ActivityName").val("不只要排便順也要讓馬桶順");
-        $("#PeopleCount").val("100");
+        $("#PeopleCount").val("50");
         $("#MeetingPoint").val("窩居公寓地下室的廁所");
         $("#note").val("見證奇蹟的時刻到了");
         $("#StartTime").val("2020/12/24 上午 10:20");
